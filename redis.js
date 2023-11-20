@@ -3,8 +3,17 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+
+// const redisClient = () => {
+//   return redis.createClient({
+//     host: localhost,
+//     port: 6379,
+//   });
+// };
 const redisClient = () => {
-  return redis.createClient();
+  return redis.createClient({
+    url: process.env.redis_url
+  });
 };
 
 
