@@ -13,6 +13,10 @@ app.use(cors({origin: "*"}));  // middleware to connect with other domains
 
 const port = process.env.PORT;
 
+app.get("/",(req, res)=>{
+    res.send("successfully node server created...")
+})
+
 
 connectDb();    // connection to database
 
