@@ -11,7 +11,7 @@ app.use(express.json());  // middleware for sending request '(post)' to change j
 app.use(cors({origin: "*"}));  // middleware to connect with other domains
 
 
-const port = 5000;
+const port = process.env.PORT;
 
 
 connectDb();    // connection to database

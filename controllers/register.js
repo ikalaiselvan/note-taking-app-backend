@@ -7,6 +7,7 @@ import sendEmail from "./SendMail.js";
 dotenv.config();
 
 async function InsertVerifyUser(name, email, password) {
+  console.log(name, email, password)
   try {
     // converting hashed password for users password
     const salt = await bcrypt.genSalt(10);
