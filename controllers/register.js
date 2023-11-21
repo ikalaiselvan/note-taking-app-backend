@@ -13,11 +13,11 @@ async function InsertVerifyUser(name, email, password) {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
     const token = await generateWebToken(email);
-      const userVerify = await VerifyUser.findOne({ email: email });
+    const userVerify = await VerifyUser.findOne({ email: email });
 
-      if(userVerify){
-        await VerifyUser.deleteOne({email: email});
-      }
+    if (userVerify) {
+      await VerifyUser.deleteOne({ email: email });
+    }
 
     const newUser = VerifyUser({
       name: name,
@@ -30,7 +30,8 @@ async function InsertVerifyUser(name, email, password) {
     await newUser.save();
 
     // send conformation mail
-    const activationLink = `http://localhost:5000/register/${token}`;
+    // const activationLink = `http://localhost:5000/register/${token}`;
+    const activationLink = `https://note-taking-app-backend-duxb.onrender.com/register/${token}`;
 
     const content = `<h4>Hi, there</h4>
         <h5>Welcome to the app </h5>
@@ -42,7 +43,6 @@ async function InsertVerifyUser(name, email, password) {
 
     console.log(newUser);
     await sendEmail(email, "Verification link", content);
-
   } catch (error) {
     console.log(`catch error while InsertVerifyUser : ${error}`);
   }
