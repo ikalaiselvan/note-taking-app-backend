@@ -1,9 +1,10 @@
-const express = require("express");
 const {checkUser} = require("../controllers/login.js");
 const {
   InsertVerifyUser,
   InsertRegisterUser,
 } = require("../controllers/register.js");
+const express = require("express");
+
 
 
 // import express from "express";
