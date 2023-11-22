@@ -1,6 +1,10 @@
-import express from "express";
-import { AuthenticateUser } from "../controllers/login.js";
-import client from "../redis.js";
+const express = require("express");
+const { AuthenticateUser } = require("../controllers/login.js");
+const client = require("../redis.js");
+
+// import express from "express";
+// import { AuthenticateUser } from "../controllers/login.js";
+// import client from "../redis.js";
 
 const router = express.Router();
 
@@ -33,4 +37,5 @@ router.post("/", async (req, res) => {
   } catch (error) {}
 });
 
-export default router;
+module.exports = router;
+// export default router;

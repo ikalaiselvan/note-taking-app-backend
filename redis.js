@@ -1,5 +1,8 @@
-import redis from "redis";
-import dotenv from "dotenv";
+const redis = require("redis");
+const dotenv = require("dotenv");
+
+// import redis from "redis";
+// import dotenv from "dotenv";
 
 dotenv.config();
 
@@ -36,4 +39,5 @@ process.on("SIGQUIT", ()=>{
     client.quit();
 })
 
-export default client;
+module.exports  = client;
+// export default client;

@@ -1,4 +1,6 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
+
+// import mongoose from "mongoose";
 
 const veryfySchema = mongoose.Schema({
   name: {
@@ -24,4 +26,7 @@ const veryfySchema = mongoose.Schema({
 
 const VerifyUser = mongoose.model("VerifyUser", veryfySchema);
 
-export default VerifyUser;
+
+module.exports = VerifyUser;
+
+// export default VerifyUser;

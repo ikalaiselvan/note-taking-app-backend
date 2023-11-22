@@ -1,9 +1,17 @@
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-import dotenv from "dotenv";
-import VerifyUser from "../model/verifyUser.js";
-import User from "../model/User.js";
-import sendEmail from "./SendMail.js";
+// import bcrypt from "bcrypt";
+// import jwt from "jsonwebtoken";
+// import dotenv from "dotenv";
+// import VerifyUser from "../model/verifyUser.js";
+// import User from "../model/User.js";
+// import sendEmail from "./SendMail.js";
+
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const dotenv = require("dotenv");
+const VerifyUser = require("../model/verifyUser");
+const User = require("../model/User");
+const sendEmail = require("./SendMail");
+
 dotenv.config();
 
 async function InsertVerifyUser(name, email, password) {
@@ -106,4 +114,5 @@ async function InsertRegisterUser(token) {
   }
 }
 
-export { InsertVerifyUser, InsertRegisterUser };
+module.exports = { InsertVerifyUser, InsertRegisterUser }
+// export { InsertVerifyUser, InsertRegisterUser };

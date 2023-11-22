@@ -1,8 +1,17 @@
-import User from "../model/User.js";
-import  bcrypt  from 'bcrypt';
-import jwt from 'jsonwebtoken';
-import client from "../redis.js";
-import dotenv from "dotenv";
+
+
+// import User from "../model/User.js";
+// import  bcrypt  from 'bcrypt';
+// import jwt from 'jsonwebtoken';
+// import client from "../redis.js";
+// import dotenv from "dotenv";
+
+const User = require("../model/User.js");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const client = require("../redis")
+const dotenv = require("dotenv");
+
 
 dotenv.config();
 
@@ -80,4 +89,5 @@ async function AuthorizeUser(token) {
   }
 }
 
-export { checkUser, AuthenticateUser, AuthorizeUser };
+module.exports = { checkUser, AuthenticateUser, AuthorizeUser };
+// export { checkUser, AuthenticateUser, AuthorizeUser };

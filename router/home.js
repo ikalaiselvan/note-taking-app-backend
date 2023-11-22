@@ -1,6 +1,10 @@
-import express from "express";
-import { AuthorizeUser } from "../controllers/login.js";
-import User from "../model/User.js";
+const express = require("express");
+const { AuthorizeUser } = require("../controllers/login.js");
+const User = require("../model/User.js");
+
+// import express from "express";
+// import { AuthorizeUser } from "../controllers/login.js";
+// import User from "../model/User.js";
 
 const router = express.Router();
 
@@ -68,4 +72,5 @@ router.get("/data", async (req, res) => {
 });
 
 
-export default router;
+module.exports = router;
+// export default router;

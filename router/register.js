@@ -1,6 +1,14 @@
-import express from "express";
-import {checkUser} from "../controllers/login.js";
-import {InsertVerifyUser, InsertRegisterUser}  from "../controllers/register.js";
+const express = require("express");
+const {checkUser} = require("../controllers/login.js");
+const {
+  InsertVerifyUser,
+  InsertRegisterUser,
+} = require("../controllers/register.js");
+
+
+// import express from "express";
+// import {checkUser} from "../controllers/login.js";
+// import {InsertVerifyUser, InsertRegisterUser}  from "../controllers/register.js";
 
 const router = express.Router();
 
@@ -55,5 +63,6 @@ router.post("/verify", async (req, res)=>{
 
 })
 
+module.exports = router;
 
-export default router;
+// export default router;
