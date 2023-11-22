@@ -1,8 +1,6 @@
-
+const mongoose = require("mongoose");
 
 // import mongoose from "mongoose";
-
-const { default: mongoose } = require("mongoose");
 
 const userSchema = mongoose.Schema(
   {
