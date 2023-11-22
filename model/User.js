@@ -21,6 +21,7 @@ const userSchema = mongoose.Schema(
       },
       heading: {
         type: String,
+        default: "heading",
       },
       body: {
         type: String,
