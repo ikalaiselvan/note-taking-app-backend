@@ -1,4 +1,4 @@
-import { express } from "express";
+import express from "express";
 import connectDb from "./db.js";
 import registerRouter from "./router/register.js";
 import loginRouter from "./router/login.js";
