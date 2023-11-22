@@ -1,6 +1,8 @@
-const mongoose = require("mongoose");
+
 
 // import mongoose from "mongoose";
+
+const { default: mongoose } = require("mongoose");
 
 const userSchema = mongoose.Schema(
   {
@@ -16,26 +18,28 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    data: [{
-      id:{
-        type: String,
-        unique: true,
+    data: [
+      {
+        id: {
+          type: String,
+          unique: true,
+        },
+        heading: {
+          type: String,
+          default: "heading",
+        },
+        body: {
+          type: String,
+        },
+        background: {
+          type: String,
+        },
+        date: {
+          type: Date,
+          default: new Date(),
+        },
       },
-      heading: {
-        type: String,
-        default: "heading",
-      },
-      body: {
-        type: String,
-      },
-      background: {
-        type: String,
-      },
-      date: {
-        type: Date,
-        default: new Date(),
-      },
-    }],
+    ],
     forgetPassword: {
       time: {
         type: Date,
@@ -55,6 +59,6 @@ const userSchema = mongoose.Schema(
 
 const User = mongoose.model("User", userSchema);
 
-
 module.exports = User;
+
 // export default User;
