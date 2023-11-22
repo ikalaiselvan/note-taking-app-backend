@@ -1,4 +1,4 @@
-import express from "express";
+import { express } from "express";
 import connectDb from "./db.js";
 import registerRouter from "./router/register.js";
 import loginRouter from "./router/login.js";
@@ -8,18 +8,16 @@ import cors from "cors";
 
 const app = express();
 
-app.use(express.json());  // middleware for sending request '(post)' to change json formate 
-app.use(cors({origin: "*"}));  // middleware to connect with other domains
-
+app.use(express.json()); // middleware for sending request '(post)' to change json formate
+app.use(cors({ origin: "*" })); // middleware to connect with other domains
 
 const port = process.env.PORT;
 
-app.get("/",(req, res)=>{
-    res.send("successfully node server created...")
-})
+app.get("/", (req, res) => {
+  res.send("successfully node server created...");
+});
 
-
-connectDb();    // connection to database
+connectDb(); // connection to database
 
 app.use("/home", homeRouter);
 
@@ -27,4 +25,4 @@ app.use("/register", registerRouter);
 app.use("/login", loginRouter);
 app.use("/home", homeRouter);
 
-app.listen(port, ()=>console.log("Node is running on port: ", port));
+app.listen(port, () => console.log("Node is running on port: ", port));
