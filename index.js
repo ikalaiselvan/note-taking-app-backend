@@ -1,5 +1,5 @@
 
-const connectDb = require("./db");
+
 const registerRouter = require("./router/register.js");
 const loginRouter = require("./router/login.js");
 const homeRouter = require("./router/home.js");
@@ -10,7 +10,8 @@ const cors = require("cors");
 // import loginRouter from "./router/login.js";
 // import homeRouter from "./router/home.js";
 // import cors from "cors";
-const express = require("express")
+const express = require("express");
+const connectDb = require("./db");
 
 const app = express();
 
