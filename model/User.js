@@ -18,13 +18,10 @@ const userSchema = mongoose.Schema(
     },
     data: [
       {
-        id: {
-          type: String,
-          unique: true,
-        },
         heading: {
           type: String,
           default: "heading",
+          required: true,
         },
         body: {
           type: String,

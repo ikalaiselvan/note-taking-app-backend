@@ -1,11 +1,9 @@
-const {checkUser} = require("../controllers/login.js");
+const { checkUser } = require("../controllers/login.js");
 const {
   InsertVerifyUser,
   InsertRegisterUser,
 } = require("../controllers/register.js");
 const express = require("express");
-
-
 
 // import express from "express";
 // import {checkUser} from "../controllers/login.js";
@@ -13,16 +11,16 @@ const express = require("express");
 
 const router = express.Router();
 
-router.get("/:token", async (req, res)=>{
-    try {
-        const response = await InsertRegisterUser(req.params.token);
-        console.log(":token response : ",response )
+router.get("/:token", async (req, res) => {
+  try {
+    const response = await InsertRegisterUser(req.params.token);
+    console.log("get token from activation link :",req.params.token)
+    console.log(":token response : ", response);
 
-        res.status(200).send(response);
-
-    } catch (error) {
-        console.log(`catch error while receive and check token : ${error}`);
-        res.status(500).send(`
+    res.status(200).send(response);
+  } catch (error) {
+    console.log(`catch error while receive and check token : ${error}`);
+    res.status(500).send(`
         <html>
         <body>
         <h4>Registration failed</h4>
@@ -31,38 +29,34 @@ router.get("/:token", async (req, res)=>{
         <p>Regards</p>
         <p>Kalaiselvan P</p>
         </body>
-        </html>`)
-    }
+        </html>`);
+  }
 });
 
-router.post("/verify", async (req, res)=>{
+router.post("/verify", async (req, res) => {
+  try {
+    const { name, email, password } = req.body;
 
-    try {
-        const { name, email, password } = req.body;
-        console.log(name, email, password);
+    // Checking user aldready exist or not
+    const userExist = await checkUser(email);
 
-        // Checking user aldready exist or not
-        const userExist = await checkUser(email);
+    if (userExist === false) {
+      console.log(name, email, password);
 
-        if(userExist === false){
+      await InsertVerifyUser(name, email, password);
+      res.status(200).send(true);
 
-            await InsertVerifyUser(name, email, password);
-            res.status(200).send(true);
+    } else if (userExist === true) {
 
-        }else if(userExist === true){
+      res.status(200).send(false);
+    } else if (userExist === "Server Busy") {
 
-            res.status(200).send(false);
-
-        }else if(userExist === "Server Busy"){
-
-            res.status(500).send("Server Busy");
-        }
-
-    } catch (error) {
-        console.log("catch error while chicking verify user : ", error);
+      res.status(500).send("Server Busy");
     }
-
-})
+  } catch (error) {
+    console.log("catch error while chicking verify user : ", error);
+  }
+});
 
 module.exports = router;
 

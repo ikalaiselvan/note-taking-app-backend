@@ -15,7 +15,7 @@ const sendEmail = require("./SendMail");
 dotenv.config();
 
 async function InsertVerifyUser(name, email, password) {
-  console.log(name, email, password)
+  console.log(name, email, password);
   try {
     // converting hashed password for users password
     const salt = await bcrypt.genSalt(10);
@@ -38,8 +38,8 @@ async function InsertVerifyUser(name, email, password) {
     await newUser.save();
 
     // send conformation mail
-    // const activationLink = `http://localhost:5000/register/${token}`;
-    const activationLink = `https://note-taking-app-backend-duxb.onrender.com/register/${token}`;
+    const activationLink = `http://localhost:5000/register/${token}`;
+    // const activationLink = `https://note-taking-app-backend-duxb.onrender.com/register/${token}`;
 
     const content = `<h4>Hi, there</h4>
         <h5>Welcome to the app </h5>
@@ -49,7 +49,7 @@ async function InsertVerifyUser(name, email, password) {
         <p>Regards</p>
         <p>Kalaiselvan P</p>`;
 
-    console.log(newUser);
+    console.log("new Verify User : ", newUser);
     await sendEmail(email, "Verification link", content);
   } catch (error) {
     console.log(`catch error while InsertVerifyUser : ${error}`);
@@ -62,9 +62,11 @@ async function generateWebToken(email) {
 }
 
 async function InsertRegisterUser(token) {
-
   try {
     const userVerify = await VerifyUser.findOne({ token: token });
+    console.log("get user while click activation link : ", userVerify);
+    console.log("token: from activation link : ", token);
+
     if (userVerify) {
       const newUser = new User({
         name: userVerify.name,
@@ -105,7 +107,7 @@ async function InsertRegisterUser(token) {
         <html>
         <body>
         <h4>Registration failed</h4>
-        <p>something was happened</p>
+        <p>not matching your credentials...</p>
         
         <p>Regards</p>
         <p>Kalaiselvan P</p>
@@ -114,5 +116,5 @@ async function InsertRegisterUser(token) {
   }
 }
 
-module.exports = { InsertVerifyUser, InsertRegisterUser }
+module.exports = { InsertVerifyUser, InsertRegisterUser };
 // export { InsertVerifyUser, InsertRegisterUser };
