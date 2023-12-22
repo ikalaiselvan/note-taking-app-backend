@@ -14,8 +14,8 @@ const router = express.Router();
 router.get("/:token", async (req, res) => {
   try {
     const response = await InsertRegisterUser(req.params.token);
-    console.log("get token from activation link :",req.params.token)
-    console.log(":token response : ", response);
+    // console.log("get token from activation link :",req.params.token)
+    // console.log(":token response : ", response);
 
     res.status(200).send(response);
   } catch (error) {

@@ -38,8 +38,8 @@ async function InsertVerifyUser(name, email, password) {
     await newUser.save();
 
     // send conformation mail
-    // const activationLink = `http://localhost:5000/register/${token}`;
-    const activationLink = `https://note-taking-app-backend-duxb.onrender.com/register/${token}`;
+    const activationLink = `http://localhost:5000/register/${token}`;
+    // const activationLink = `https://note-taking-app-backend-duxb.onrender.com/register/${token}`;
 
     const content = `<h4>Hi, there</h4>
         <h5>Welcome to the app </h5>
